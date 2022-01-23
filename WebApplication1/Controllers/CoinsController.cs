@@ -47,7 +47,7 @@ namespace WebApplication1.Controllers
             foreach(var item in Wallets.allWallets)
             {
                 if(item.Name == walletName)
-                {
+                { 
                     thisWallet = item;
                 }
             }
