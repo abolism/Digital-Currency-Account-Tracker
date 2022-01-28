@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Cryptography.X509Certificates;
 using System.Web.Http;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -16,6 +20,7 @@ namespace WebApplication1.Controllers
 
         public Wallets Get(string walletName)
         {
+            
             Wallets thisWallet = new Wallets("");
             foreach(var item in Wallets.allWallets)
             {
@@ -30,10 +35,12 @@ namespace WebApplication1.Controllers
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
-        {
-            return "value";
-        }
+        //public string Get(int id)
+            
+        //{
+
+        //    return "value";
+        //}
 
         // POST api/<controller>
         [Route("api/{walletName}/Coins")]
@@ -41,6 +48,7 @@ namespace WebApplication1.Controllers
         public string Post(string walletName,Coins coin)
 
         {
+
             Wallets thisWallet = new Wallets("");
 
             bool checker = true;
@@ -51,6 +59,8 @@ namespace WebApplication1.Controllers
                     thisWallet = item;
                 }
             }
+
+            
             if (thisWallet.Name == "")
             {
                 return "wallet does not exist";
