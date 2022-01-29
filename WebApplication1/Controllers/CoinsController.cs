@@ -9,11 +9,14 @@ using System.Web.Http;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using WebApplication1.Models;
+using System.Text.Json;
+using System.IO;
 
 namespace WebApplication1.Controllers
 {
     public class CoinsController : ApiController
     {
+        static string jsonSerialCoinsList;
         // GET api/<controller>
         [Route("api/Coins/{walletName}")]
         [HttpGet]
@@ -85,6 +88,8 @@ namespace WebApplication1.Controllers
                 thisWallet.coins.Add(coin);
                 thisWallet.Balance += coin.Amount * coin.Rate;
                 thisWallet.lastUpdated = DateTime.Now;
+                WalletsController.jsonSerialWalletsList = JsonSerializer.Serialize(Wallets.allWallets);
+                jsonSerialCoinsList = JsonSerializer.Serialize(Coins.allCoins);
                 return "coin added succesfully";
 
             }
@@ -122,6 +127,8 @@ namespace WebApplication1.Controllers
             thisWallet.Balance -= thisCoin.Amount * thisCoin.Rate;
             thisWallet.Balance += coin.Amount * coin.Rate;
             thisWallet.lastUpdated = DateTime.Now;
+            WalletsController.jsonSerialWalletsList = JsonSerializer.Serialize(Wallets.allWallets);
+            jsonSerialCoinsList = JsonSerializer.Serialize(Coins.allCoins);
             return "coin updated succesfully";
         }
 
@@ -155,6 +162,9 @@ namespace WebApplication1.Controllers
             thisWallet.coins.Remove(thisCoin);
             thisWallet.Balance -= thisCoin.Amount * thisCoin.Rate;
             thisWallet.lastUpdated = DateTime.Now;
+            jsonSerialCoinsList = JsonSerializer.Serialize(Coins.allCoins);
+            WalletsController.jsonSerialWalletsList = JsonSerializer.Serialize(Wallets.allWallets);
+            //File.WriteAllText("",WalletsController.jsonSerialWalletsList);
             return "coin deleted succesfully ";
         }
     }
