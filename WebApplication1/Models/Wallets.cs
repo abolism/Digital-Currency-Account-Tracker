@@ -11,7 +11,21 @@ namespace WebApplication1.Models
     {
         public string Name { get; set; } = "";
         public float Balance { get; set; } = 0;
-        static public List<Wallets> allWallets = JsonSerializer.Deserialize<List<Wallets>>(File.ReadAllText(@"D:\WebApi\WebApplication1\jsonData.json"));
+        //static public List<Wallets> allWallets = JsonSerializer.Deserialize<List<Wallets>>(File.ReadAllText(@"D:\WebApi\WebApplication1\jsonData.json"));
+
+
+        //public static void makeList()
+        //{
+        //    try
+        //    {
+        //        allWallets = JsonSerializer.Deserialize<List<Wallets>>(File.ReadAllText(@"D:\WebApi\WebApplication1\jsonData.json"));
+
+        //    }
+        //    catch (Exception e) { 
+        //        allWallets = new List<Wallets>();
+        //        Console.WriteLine(e.Message);
+        //    }
+        //}
         public List<Coins> coins = new List<Coins>();
         public DateTime lastUpdated;
         public Wallets(string name)
@@ -24,7 +38,8 @@ namespace WebApplication1.Models
 
         public void addToWallets ( Wallets w)
         {
-            allWallets.Add(w);
+
+            Records.allWallets.Add(w);
         }
     }
 }

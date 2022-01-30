@@ -25,7 +25,7 @@ namespace WebApplication1.Controllers
         {
             
             Wallets thisWallet = new Wallets("");
-            foreach(var item in Wallets.allWallets)
+            foreach(var item in Records.allWallets)
             {
                 if (item.Name == walletName)
                     thisWallet = item;
@@ -52,10 +52,12 @@ namespace WebApplication1.Controllers
 
         {
 
+            
+
             Wallets thisWallet = new Wallets("");
 
             bool checker = true;
-            foreach(var item in Wallets.allWallets)
+            foreach(var item in Records.allWallets)
             {
                 if(item.Name == walletName)
                 { 
@@ -88,7 +90,7 @@ namespace WebApplication1.Controllers
                 thisWallet.coins.Add(coin);
                 thisWallet.Balance += coin.Amount * coin.Rate;
                 thisWallet.lastUpdated = DateTime.Now;
-                WalletsController.jsonSerialWalletsList = JsonSerializer.Serialize(Wallets.allWallets);
+                WalletsController.jsonSerialWalletsList = JsonSerializer.Serialize(Records.allWallets);
                 jsonSerialCoinsList = JsonSerializer.Serialize(Coins.allCoins);
                 return "coin added succesfully";
 
@@ -104,7 +106,7 @@ namespace WebApplication1.Controllers
         {
             Wallets thisWallet = new Wallets("");
             Coins thisCoin = new Coins("");
-            foreach(var item in Wallets.allWallets)
+            foreach(var item in Records.allWallets)
             {
                 if (item.Name == walletName)
                 {
@@ -127,7 +129,7 @@ namespace WebApplication1.Controllers
             thisWallet.Balance -= thisCoin.Amount * thisCoin.Rate;
             thisWallet.Balance += coin.Amount * coin.Rate;
             thisWallet.lastUpdated = DateTime.Now;
-            WalletsController.jsonSerialWalletsList = JsonSerializer.Serialize(Wallets.allWallets);
+            WalletsController.jsonSerialWalletsList = JsonSerializer.Serialize(Records.allWallets);
             jsonSerialCoinsList = JsonSerializer.Serialize(Coins.allCoins);
             return "coin updated succesfully";
         }
@@ -141,7 +143,7 @@ namespace WebApplication1.Controllers
         {
             Wallets thisWallet = new Wallets("");
             Coins thisCoin = new Coins("");
-            foreach (var item in Wallets.allWallets) { 
+            foreach (var item in Records.allWallets) { 
                 if(item.Name == walletName)
                 {
                     thisWallet = item;
@@ -163,7 +165,7 @@ namespace WebApplication1.Controllers
             thisWallet.Balance -= thisCoin.Amount * thisCoin.Rate;
             thisWallet.lastUpdated = DateTime.Now;
             jsonSerialCoinsList = JsonSerializer.Serialize(Coins.allCoins);
-            WalletsController.jsonSerialWalletsList = JsonSerializer.Serialize(Wallets.allWallets);
+            WalletsController.jsonSerialWalletsList = JsonSerializer.Serialize(Records.allWallets);
             //File.WriteAllText("",WalletsController.jsonSerialWalletsList);
             return "coin deleted succesfully ";
         }

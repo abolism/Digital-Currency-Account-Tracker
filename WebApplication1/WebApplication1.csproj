@@ -191,6 +191,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Coins.cs" />
+    <Compile Include="Models\Records.cs" />
     <Compile Include="Models\Wallets.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
